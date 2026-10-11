@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nigerian-fake-news-bilstm"
+version = "1.0.0"
+description = "Research prototype for Nigerian social-media misinformation classification with a BiLSTM"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = { text = "Academic research prototype; see docs/DATA_PROVENANCE.md" }
+dependencies = [
+  "torch>=2.2,<3",
+  "numpy>=1.24,<3",
+  "pandas>=2,<4",
+  "scikit-learn>=1.4,<2",
+  "matplotlib>=3.8,<4",
+  "fastapi>=0.110,<1",
+  "uvicorn[standard]>=0.27,<1",
+  "python-multipart>=0.0.9,<1",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9", "httpx>=0.27,<1"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

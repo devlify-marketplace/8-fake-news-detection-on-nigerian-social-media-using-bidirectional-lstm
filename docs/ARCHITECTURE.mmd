@@ -1,0 +1,24 @@
+flowchart TB
+    subgraph collection[Data collection and evidence]
+        direction LR
+        A[Permission-cleared public posts] --> B[Evidence-based labels and provenance]
+    end
+    subgraph preparation[Data quality and split]
+        direction LR
+        C[Schema validation and text normalization] --> D[Exact deduplication and claim/event grouping] --> E[Grouped stratified 60/20/20 split]
+    end
+    subgraph modeling[Modeling and evaluation]
+        direction LR
+        F[Train-only vocabulary] --> G[Word embeddings] --> H[Bidirectional LSTM] --> I[Credible / misleading logit]
+    end
+    subgraph deployment[Human-reviewed screening]
+        direction LR
+        J[Validation-loss early stopping] --> K[Held-out test metrics] --> L[TF-IDF baseline comparison]
+        M[Local API and browser demo]
+        N[Human fact-checking and source evidence]
+        N --> M
+    end
+    B --> C
+    E --> F
+    I --> J
+    J --> M
